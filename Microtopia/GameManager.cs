@@ -24,13 +24,28 @@ namespace Microtopia
 
         public static void GenerateMap(int width, int height)
         {
-            Map = new List<Tile>(); // Map null here? Shoud be instantiated
+            Map = new List<Tile>(); // Map null here? Should be instantiated
+            Random rnd = new Random();
+
             for (int i = 0; i < height; i++)
             {
                 for (int j = 0; j < width; j++)
                 {
-                    Map.Add(new TileField(j, i));
-                    // Random rnd = new Random();
+                    switch (rnd.Next(1, 5))
+                    {
+                        case 1:
+                            Map.Add(new TileField(j, i));
+                            break;
+                        case 2:
+                            Map.Add(new TileForest(j, i));
+                            break;
+                        case 3:
+                            Map.Add(new TileMountain(j, i));
+                            break;
+                        case 4:
+                            Map.Add(new TileOcean(j, i));
+                            break;
+                    }
                 }
             }
         }
